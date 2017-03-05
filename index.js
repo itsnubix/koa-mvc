@@ -12,7 +12,7 @@ const metricService = require('./app/services/metricService');
 const middleware = require('./app/middleware');
 
 const app = new Koa();
-app.use(middleware());
+app.use(middleware(app));
 app.listen(config.port);
 logService.info(`Listening on port ${config.port}`);
 
