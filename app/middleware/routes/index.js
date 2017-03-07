@@ -7,6 +7,7 @@ const logService = require('../../services/logService');
 module.exports = () => {
   const router = new Router();
 
+  KoaConfig.routeDetails = {};
   for (const routeKey of _.keys(KoaConfig.routes)) {
     const [verb, url] = routeKey.split(' ');
     const routeValue = KoaConfig.routes[routeKey];
@@ -19,6 +20,12 @@ module.exports = () => {
         const actionInstance = controller[action];
         if (actionInstance) {
           router[verb](url, actionInstance);
+
+          // Trim "Controller" off the end of the controllerPath
+          KoaConfig.routeDetails[url] = {
+            controller: controllerPath.slice(0, -10).toLowerCase(),
+            action,
+          };
         } else {
           logService.warn(`Unable to find controller action for route: ${routeKey}`);
         }
