@@ -11,9 +11,15 @@ const logService = require('./app/services/logService');
 const metricService = require('./app/services/metricService');
 const middleware = require('./app/middleware');
 
-const app = new Koa();
-app.use(middleware(app));
-app.listen(config.port);
-logService.info(`Listening on port ${config.port}`);
+(async function loadApplication() {
+  const app = new Koa();
+  await middleware.plugins(app);
+  app.use(middleware.middleware());
+  app.listen(config.port);
+  logService.info(`Listening on port ${config.port}`);
 
-metricService.duration('application.startupTime', startupTime);
+  metricService.duration('application.startupTime', startupTime);
+}()).catch((ex) => {
+  logService.error(ex);
+  throw ex;
+});
