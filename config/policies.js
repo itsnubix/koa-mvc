@@ -6,5 +6,5 @@
  * therefore the request always will directly reach the intended handler.
  */
 module.exports = {
-  'get /': ['parameterTypeCheck', 'passport', 'maintenanceMode', 'no-cache', 'authenticated', 'refreshSessionCookie'],
+  'get /': ['noCache', 'modernBrowser'],
 };
