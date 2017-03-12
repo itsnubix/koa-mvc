@@ -18,4 +18,5 @@ module.exports = _.merge({
   policies,
   routes,
   session,
+  views: {},
 }, environmentOverrides);

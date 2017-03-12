@@ -7,10 +7,10 @@ const path = require('path');
 module.exports = async (app) => {
   const viewPath = path.join(KoaConfig.path, 'views');
 
-  koaEjs(app, {
+  koaEjs(app, _.merge({}, KoaConfig.views, {
     root: viewPath,
     viewExt: 'ejs',
-  });
+  }));
 
   // override the render function to auto-fill the view name based on controller and action
   const render = app.context.render;
