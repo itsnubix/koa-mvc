@@ -8,6 +8,9 @@
   "parserOptions": {
     "sourceType": "script"
   },
+  "globals": {
+    "KoaConfig": true
+  },
   "rules": {
     "array-bracket-spacing": ["error", "never"],
     "brace-style": ["error", "1tbs"],
@@ -24,6 +27,7 @@
     "no-loop-func": "off",
     "no-lone-blocks": "error",
     "no-negated-condition": "error",
+    "no-param-reassign": "off",
     "no-shadow": "off",
     "no-undef": "error",
     "no-underscore-dangle": "off",

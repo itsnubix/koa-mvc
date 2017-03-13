@@ -5,7 +5,7 @@ module.exports = {
     await context.render();
   },
 
-  modernBrowser: async (context) => {
+  modernBrowser: async function modernBrowser(context) {
     await context.render();
   },
 };

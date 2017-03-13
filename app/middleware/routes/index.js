@@ -15,13 +15,14 @@ module.exports = () => {
       router.redirect(url, routeValue, 301);
     } else {
       const [controllerPath, action] = routeValue.split('.');
+      // eslint-disable-next-line global-require, import/no-dynamic-require
       const controller = require(`../../controllers/${controllerPath}`);
       if (controller) {
         const actionInstance = controller[action];
         if (actionInstance) {
           // Setup redirects to remove trailing slash from get requests
           if (url !== '/' && (verb === 'get' || verb === 'all')) {
-            router[verb](url + '/', async function redirect(context, next) {
+            router[verb](`${url}/`, async function redirect(context, next) {
               if (context.status === 301 || context.status === 302 || context.originalUrl === url) {
                 await next();
               } else {

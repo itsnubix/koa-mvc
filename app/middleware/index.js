@@ -9,10 +9,10 @@ const routes = require('./routes');
 const helmet = require('koa-helmet');
 const cors = require('kcors');
 
-module.exports.plugins = async (app) => {
+module.exports.plugins = async function middlewarePlugins(app) {
   return Promise.all([
     ejs(app),
-    waterlineMongo(app)
+    waterlineMongo(app),
   ]);
 };
 

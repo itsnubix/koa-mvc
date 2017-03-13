@@ -1,9 +1,10 @@
 'use strict';
 
 const _ = require('lodash');
-const fs = require('mz/fs')
+const fs = require('mz/fs');
 const path = require('path');
 const Waterline = require('waterline');
+const sailsMongo = require('sails-mongo2');
 const metricService = require('../../services/metricService');
 
 module.exports = async() => {
@@ -34,7 +35,7 @@ module.exports = async() => {
 
     const waterlineConfig = {
       adapters: {
-        'sails-mongo2': require('sails-mongo2'),
+        'sails-mongo2': sailsMongo,
       },
       connections: KoaConfig.datastores,
     };
