@@ -13,11 +13,25 @@ const middleware = require('./app/middleware');
 
 (async function loadApplication() {
   const app = new Koa();
-  await middleware.plugins(app);
+  await middleware.plugins.startup(app);
   app.use(middleware.middleware());
-  app.listen(config.port);
-  logService.info(`Listening on port ${config.port}`);
+  const httpServer = app.listen(config.port);
 
+  process.on('SIGINT', () => {
+    (async function shutdown() {
+      await middleware.plugins.shutdown();
+
+      httpServer.close(() => {
+        process.exit();
+      });
+
+    }()).catch((ex) => {
+      logService.error(ex);
+      process.exit();
+    })
+  });
+
+  logService.info(`Listening on port ${config.port}`);
   metricService.duration('application.startupTime', startupTime);
 }()).catch((ex) => {
   logService.error(ex);
