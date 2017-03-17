@@ -5,10 +5,11 @@ const responseTime = require('./responseTime');
 const ejs = require('./ejs');
 const waterlineMongo = require('./waterline-mongo');
 const librato = require('./librato');
-const policies = require('./policies');
-const routes = require('./routes');
 const helmet = require('koa-helmet');
 const cors = require('kcors');
+const policies = require('./policies');
+const routes = require('./routes');
+const staticFiles = require('./staticFiles');
 
 module.exports.plugins = {
   startup: async function startupPlugins(app) {
@@ -32,5 +33,6 @@ module.exports.middleware = () => {
     cors(),
     policies(),
     routes(),
+    staticFiles(),
   ]);
 };
