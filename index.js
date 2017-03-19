@@ -15,16 +15,13 @@ const middleware = require('./app/middleware');
   const app = new Koa();
   await middleware.plugins.startup(app);
   app.use(middleware.middleware());
-  const httpServer = app.listen(config.port);
+  app.listen(config.port);
 
   process.on('SIGINT', () => {
     (async function shutdown() {
       await middleware.plugins.shutdown();
 
-      httpServer.close(() => {
-        process.exit();
-      });
-
+      process.exit();
     }()).catch((ex) => {
       logService.error(ex);
       process.exit();
