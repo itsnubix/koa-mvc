@@ -10,16 +10,17 @@ const cors = require('kcors');
 const policies = require('./policies');
 const routes = require('./routes');
 const staticFiles = require('./staticFiles');
+const response = require('./response');
 
 module.exports.plugins = {
-  startup: async function startupPlugins(app) {
+  startup: (app) => {
     return Promise.all([
       ejs.startup(app),
       waterlineMongo.startup(app),
       librato.startup(app),
     ]);
   },
-  shutdown: async function shutdownPlugins() {
+  shutdown: () => {
     return Promise.all([
       librato.shutdown(),
     ]);
@@ -32,6 +33,7 @@ module.exports.middleware = () => {
     helmet(),
     cors(),
     policies(),
+    response(),
     routes(),
     staticFiles(),
   ]);
