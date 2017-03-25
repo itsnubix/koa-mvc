@@ -1,6 +1,53 @@
 'use strict';
 
 const winston = require('winston');
+const Redis = require('ioredis');
+
+let redisHost = 'localhost';
+let redisPort = 6379;
+if (process.env.REDIS_URL) {
+  redisHost = process.env.REDIS_URL.split(":")[1].replace("//", "");
+  redisPort = parseInt(process.env.REDIS_URL.split(":")[2]);
+}
+
+const redisSentinels = (process.env.REDIS_SENTINEL_URLS || '').split(',').map((sentinelUrl) => {
+  const [host, port] = sentinelUrl.split(':');
+  return {
+    host,
+    port,
+  };
+});
+
+const redisClient = new Redis({
+  // this is the name of the cluster,  this is a required field
+  // this value is configured in the sentinel.conf files that each
+  // sentinel is started when the process is started.
+  name: process.env.REDIS_CLUSTER_NAME || 'redis01',
+  role: 'master',
+  host: redisHost,
+  port: redisPort,
+  sentinels: redisSentinels,
+
+  // https://github.com/luin/ioredis/issues/139#issuecomment-138275522
+  retryStrategy: (times) => {
+    if (times < 2) {
+      // retry connection timeouts after 500ms
+      winston.log('warn', `Error connecting to redis. Retried ${times} times`);
+      return 500;
+    }
+    // A return value that is not a number will stop ioredis from trying to reconnect
+    return "";
+  },
+  // https://github.com/luin/ioredis#reconnect-on-error
+  reconnectOnError: (err) => {
+    const targetError = 'READONLY';
+    if (err.message.slice(0, targetError.length) === targetError) {
+      // Only reconnect when the error starts with "READONLY"
+      // this error is typically returned when switching between master and slave instances
+      return true;
+    }
+  },
+});
 
 module.exports = {
   port: 80,
@@ -11,6 +58,10 @@ module.exports = {
       url: process.env.DATABASE_URL,
       poolSize: 5,
     },
+  },
+
+  cache: {
+    client: redisClient,
   },
 
   librato: {
@@ -30,5 +81,4 @@ module.exports = {
       ],
     }),
   },
-
 };

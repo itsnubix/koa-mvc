@@ -3,24 +3,28 @@
 module.exports = {
 
   /**
-   * Define the session implementation, e.g. 'jwt' or 'cookie'
+   * Cache key prefix for session data
    */
-  strategy: 'jwt',
+  cacheKeyPrefix: '__session:',
 
   /**
-   * Define jwt-specific options
+   * Session cookie name
    */
-  jwt: {
-    secret: '',
-    connection: 'localStorage',
-    model: 'WebToken',
+  cookieName: '__sid',
+
+  /**
+   * Options to use when creating the session cookie
+   */
+  cookieOptions: {
+    maxAge: 0,
+    path: '/',
+    httpOnly: true,
+    overwrite: true,
+    signed: false,
   },
 
   /**
-   * Define cookie-specific options
+   * Specifies how long (in seconds) to store session data in the session store
    */
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000,
-  },
-
+  ttl: 24 * 60 * 60, // 24 hours
 };

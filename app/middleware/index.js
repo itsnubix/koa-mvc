@@ -7,6 +7,8 @@ const waterlineMongo = require('./waterline-mongo');
 const librato = require('./librato');
 const helmet = require('koa-helmet');
 const cors = require('kcors');
+const cache = require('./cache');
+const session = require('./session');
 const policies = require('./policies');
 const routes = require('./routes');
 const staticFiles = require('./staticFiles');
@@ -32,6 +34,8 @@ module.exports.middleware = () => {
     responseTime,
     helmet(),
     cors(),
+    cache(),
+    session(),
     policies(),
     response(),
     routes(),
