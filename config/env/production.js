@@ -60,9 +60,7 @@ module.exports = {
     },
   },
 
-  cache: {
-    client: redisClient,
-  },
+  cache: redisClient,
 
   librato: {
     email: process.env.LIBRATO_EMAIL,

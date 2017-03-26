@@ -37,9 +37,7 @@ module.exports = {
     },
   },
 
-  cache: {
-    client: redisClient,
-  },
+  cache: redisClient,
 
   views: {
     cache: false,
