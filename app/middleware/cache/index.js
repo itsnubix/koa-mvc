@@ -48,7 +48,7 @@ module.exports = () => {
      * @returns {Promise.<void>}
      */
     destroy: async function destroy(key) {
-      await KoaConfig.cache.destroy(key);
+      await KoaConfig.cache.del(key);
     },
     /**
      * Gets the value from cache. If the value does not exist in cache, the value will be retrieved from valueFunction and cached
