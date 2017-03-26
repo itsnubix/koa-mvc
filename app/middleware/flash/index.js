@@ -28,5 +28,9 @@ module.exports = () => {
     context.state.flash = flash;
 
     await next();
+
+    if (_.isEmpty(context.session.flash)) {
+      delete context.session.flash;
+    }
   };
 };
