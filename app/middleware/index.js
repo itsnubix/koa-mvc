@@ -9,6 +9,7 @@ const helmet = require('koa-helmet');
 const cors = require('kcors');
 const cache = require('./cache');
 const session = require('./session');
+const flash = require('./flash');
 const policies = require('./policies');
 const routes = require('./routes');
 const staticFiles = require('./staticFiles');
@@ -36,6 +37,7 @@ module.exports.middleware = () => {
     cors(),
     cache(),
     session(),
+    flash(),
     policies(),
     response(),
     routes(),
