@@ -29,6 +29,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
 ## Migrating from a sails.js app
 
 * With koa-mvc, the server-side code is located in `./app`. With sails.js, server-side code is located in `./api`
+* Configuration information is available by the global `KoaConfig` rather than `sails.config`
 * The signature for controller actions has different parameters. With koa-mvc, `req` and `res` are properties on a `context` object.
 
   **sails.js**
