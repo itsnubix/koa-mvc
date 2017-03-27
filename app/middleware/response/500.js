@@ -4,6 +4,11 @@ const statusCode = 500;
 const logService = require('../../services/logService');
 
 module.exports = async function response(context, next) {
+  context.serverError = function serverError(data) {
+    context.status = statusCode;
+    context.state.data = data;
+  };
+
   try {
     await next();
   } catch (ex) {

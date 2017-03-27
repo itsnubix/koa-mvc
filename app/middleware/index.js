@@ -38,8 +38,8 @@ module.exports.middleware = () => {
     cache(),
     session(),
     flash(),
-    policies(),
     response(),
+    policies(),
     routes(),
     staticFiles(),
   ]);
