@@ -16,9 +16,9 @@ module.exports = () => {
       if (policy) {
         if (url[0] === '^') {
           const urlRegex = new RegExp(url);
-          router[verb](urlRegex, policy());
+          router[verb](urlRegex, policy);
         } else {
-          router[verb](url, policy());
+          router[verb](url, policy);
         }
       } else {
         logService.warn(`Unable to find ${routePolicyName} policy for route: ${routeKey}`);
