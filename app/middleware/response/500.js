@@ -25,9 +25,7 @@ module.exports = async function response(context, next) {
     logData = new Error(logData || `Error ${context.status}`);
   }
 
-  logService.error(logData, {
-    req: context.req,
-  });
+  logService.error(logData);
 
   if (KoaConfig.environment === 'production') {
     context.body = {
