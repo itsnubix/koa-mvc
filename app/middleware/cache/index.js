@@ -72,7 +72,7 @@ module.exports = () => {
     },
   };
 
-  return async function sessionRedis(context, next) {
+  return async function cache(context, next) {
     context.cache = store;
 
     await next();
