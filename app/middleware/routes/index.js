@@ -20,23 +20,11 @@ module.exports = () => {
       if (controller) {
         const actionInstance = controller[action];
         if (actionInstance) {
-          // Setup redirects to remove trailing slash from get requests
-          if (url !== '/' && (verb === 'get' || verb === 'all')) {
-            router[verb](`${url}/`, async function redirect(context, next) {
-              if (context.status === 301 || context.status === 302 || context.originalUrl === url) {
-                await next();
-              } else {
-                context.redirect(url);
-                context.status = 301;
-              }
-            });
-          }
-
           router[verb](url, actionInstance);
 
           // Trim "Controller" off the end of the controllerPath
           KoaConfig.routeDetails[url] = {
-            controller: controllerPath.slice(0, -10).toLowerCase(),
+            controller: controllerPath.replace(/Controller$/ig, '').toLowerCase(),
             action,
           };
         } else {
