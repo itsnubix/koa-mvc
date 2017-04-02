@@ -1,46 +1,46 @@
 'use strict';
 
 const compose = require('koa-compose');
-const responseTime = require('./responseTime');
-const ejs = require('./ejs');
-const waterlineMongo = require('./waterline-mongo');
-const librato = require('./librato');
-const helmet = require('koa-helmet');
 const cors = require('kcors');
+const favicon = require('koa-favicon');
+const helmet = require('koa-helmet');
+
 const cache = require('./cache');
-const session = require('./session');
+const device = require('./device');
 const flash = require('./flash');
+const ieStandardsMode = require('./ieStandardsMode');
 const policies = require('./policies');
-const routes = require('./routes');
-const staticFiles = require('./staticFiles');
+const removeTrailingSlash = require('./removeTrailingSlash');
 const response = require('./response');
+const responseTime = require('./responseTime');
+const routes = require('./routes');
+const session = require('./session');
+const staticFiles = require('./staticFiles');
+const staticFilesMissingFingerprint = require('./staticFilesMissingFingerprint');
 
-module.exports.plugins = {
-  startup: (app) => {
-    return Promise.all([
-      ejs.startup(app),
-      waterlineMongo.startup(app),
-      librato.startup(app),
-    ]);
-  },
-  shutdown: () => {
-    return Promise.all([
-      librato.shutdown(),
-    ]);
-  },
-};
-
-module.exports.middleware = () => {
+module.exports = () => {
   return compose([
     responseTime,
-    helmet(),
+    helmet({
+      frameguard: {
+        action: 'deny',
+      },
+      xssFilter: {
+        setOnOldIE: true,
+      },
+    }),
     cors(),
     cache(),
     session(),
     flash(),
+    device(),
+    ieStandardsMode(),
     response(),
+    removeTrailingSlash(),
     policies(),
     routes(),
+    favicon(`${KoaConfig.path}/.tmp/favicon.ico`),
     staticFiles(),
+    staticFilesMissingFingerprint(),
   ]);
 };
