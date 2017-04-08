@@ -13,7 +13,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
 
 * Run grunt to process assets (sass compilation, etc) and watch for asset changes
   ```bash
-  npm build
+  npm run build
   ```
 * Start the project
   ```bash
