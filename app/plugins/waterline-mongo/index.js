@@ -5,11 +5,9 @@ const fs = require('mz/fs');
 const path = require('path');
 const Waterline = require('waterline');
 const sailsMongo = require('sails-mongo2');
-const metricService = require('../../services/metricService');
 
 module.exports = {
   startup: async function waterlineMongoPluginStartup() {
-    const startTime = process.hrtime();
     if (KoaConfig.datastores) {
       const waterline = new Waterline();
 
@@ -17,21 +15,23 @@ module.exports = {
       const files = await fs.readdir(modelsPath);
 
       for (const file of files) {
-        const fileBasename = path.basename(file, '.js');
-        /* eslint-disable global-require, import/no-dynamic-require */
-        const schema = require(`${modelsPath}/${fileBasename}`);
-        /* eslint-enable global-require, import/no-dynamic-require */
+        if (/.js$/ig.test(file)) {
+          const fileBasename = path.basename(file, '.js');
+          /* eslint-disable global-require, import/no-dynamic-require */
+          const schema = require(`${modelsPath}/${fileBasename}`);
+          /* eslint-enable global-require, import/no-dynamic-require */
 
-        const model = _.merge({
-          identity: fileBasename.toLowerCase(),
-          globalId: fileBasename,
-          tableName: fileBasename.toLowerCase(),
-          connection: 'default',
-          migrate: 'alter',
-          dynamicFinders: false,
-        }, schema);
+          const model = _.merge({
+            identity: fileBasename.toLowerCase(),
+            globalId: fileBasename,
+            tableName: fileBasename.toLowerCase(),
+            connection: 'default',
+            migrate: 'alter',
+            dynamicFinders: false,
+          }, schema);
 
-        waterline.loadCollection(Waterline.Collection.extend(model));
+          waterline.loadCollection(Waterline.Collection.extend(model));
+        }
       }
 
       const waterlineConfig = {
@@ -55,6 +55,5 @@ module.exports = {
         });
       });
     }
-    metricService.duration('waterline init', startTime);
   },
 };
