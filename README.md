@@ -50,6 +50,41 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   }
   ```
 
+* Getting request parameters has changed from being able to use `req.param('myParam')` to having to be explicit for where the value comes from (routing param, query string, or body)
+
+  **Route parameter**: e.g. a request to `/foo/4` that maps to route `/foo/:id`
+  ```js
+  module.exports = {
+    async foo(context) {
+      // Get :id parameter from route definition
+      const id = context.params.id;
+      ...
+    },
+  }
+  ```
+
+  **Query string**: e.g. a request to `/foo?id=4`
+  ```js
+  module.exports = {
+    async foo(context) {
+      // Get value from a query string property
+      const id = context.query.id;
+      ...
+    },
+  }
+  ```
+
+  **Body variable (form/json post)**
+  ```js
+  module.exports = {
+    async fooPost(context) {
+      // Get value from the body of a form post
+      const id = context.request.body.id;
+      ...
+    },
+  }
+  ```
+
 * ejs has been updated to the [latest version](http://ejs.co/). There are some syntax differences. Eg. `partial()` is now `include()`
 * Rendering a view using ejs is done with a `render()` method on the `context` object:
 
@@ -58,7 +93,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   module.exports = {
     index(req, res) {
       return res.view({
-        users: [{ name: 'Carl' }, { name: 'Xavier' }],
+        users: [{ name: 'Karl' }, { name: 'Xavier' }],
       });
     },
   }
@@ -72,7 +107,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
       context.state.foo = 'bar';
 
       await context.render({
-        users: [{ name: 'Carl' }, { name: 'Xavier' }],
+        users: [{ name: 'Karl' }, { name: 'Xavier' }],
       };
     },
   }
@@ -87,7 +122,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
       return res.json(500, {
         ok: false,
         message: 'There was an error processing users.'
-        users: [{ name: 'Carl' }, { name: 'Xavier' }],
+        users: [{ name: 'Karl' }, { name: 'Xavier' }],
       });
     },
   }
@@ -101,7 +136,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
       context.body = {
         ok: false,
         message: 'There was an error processing users.'
-        users: [{ name: 'Carl' }, { name: 'Xavier' }],
+        users: [{ name: 'Karl' }, { name: 'Xavier' }],
       };
     },
   }
