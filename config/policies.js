@@ -6,7 +6,7 @@
  * therefore the request always will directly reach the intended handler.
  */
 module.exports = {
-  'all ^/(?!js/|styles/).*$': ['noCache'],
-  'post ^/(?!js/|styles/).*$': ['bodyParser'],
-  'all ^/(?!js/|styles/|modern\\-browser/).*$': ['modernBrowser'],
+  'all ^/(?!favicon|js/|styles/).*$': ['noCache'],
+  'post ^/(?!favicon|js/|styles/).*$': ['bodyParser'],
+  'all ^/(?!favicon|js/|styles/|modern\\-browser/).*$': ['modernBrowser'],
 };
