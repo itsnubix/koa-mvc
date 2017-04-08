@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = {
-  index: async function index(context) {
+  async index(context) {
     await context.render();
   },
 
-  modernBrowser: async function modernBrowser(context) {
+  async modernBrowser(context) {
     await context.render();
   },
 };

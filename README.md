@@ -44,7 +44,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   **koa-mvc**
   ```js
   module.exports = {
-    index: async function index(context) {
+    async index(context) {
       context.redirect('/another-url');
     },
   }
@@ -102,7 +102,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   **koa-mvc**
   ```js
   module.exports = {
-    index: async function index(context) {
+    async index(context) {
       // Optionally set additional data to be available to the view
       context.state.foo = 'bar';
 
@@ -131,7 +131,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   **koa-mvc**
   ```js
   module.exports = {
-    index: async function index(context) {
+    async index(context) {
       context.status = 500;
       context.body = {
         ok: false,
@@ -169,7 +169,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   **koa-mvc**
   ```js
   module.exports = {
-    index: async function index(context) {
+    async index(context) {
       if (!req.param('userId')) {
         return context.badRequest('User id is required');
       }
@@ -200,7 +200,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   **koa-mvc**
   ```js
   module.exports = {
-    index: async function index(context) {
+    async index(context) {
       context.flash('info', 'OMG ponies!');
       await context.view();
     },

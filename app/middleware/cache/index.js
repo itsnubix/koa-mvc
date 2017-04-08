@@ -9,7 +9,7 @@ module.exports = () => {
      * @param {string} key - Cache key
      * @returns {Object}
      */
-    get: async function get(key) {
+    async get(key) {
       const data = await KoaConfig.cache.get(key);
       if (!data) {
         return data;
@@ -29,7 +29,7 @@ module.exports = () => {
      * @param {Number} [ttl] - Time to live (in seconds) for item to remain in cache
      * @returns {Promise.<void>}
      */
-    set: async function set(key, value, ttl) {
+    async set(key, value, ttl) {
       let ttlSeconds;
       if (ttl) {
         ttlSeconds = Math.ceil(ttl / 1000);
@@ -47,7 +47,7 @@ module.exports = () => {
      * @param {string} key - Cache key
      * @returns {Promise.<void>}
      */
-    destroy: async function destroy(key) {
+    async destroy(key) {
       await KoaConfig.cache.del(key);
     },
     /**
@@ -57,7 +57,7 @@ module.exports = () => {
      * @param {Number} [ttl] - Time to live (in seconds) for item to remain in cache
      * @returns {Object}
      */
-    getOrSet: async function getOrSet(key, valueFunction, ttl) {
+    async getOrSet(key, valueFunction, ttl) {
       let value = await store.get(key);
 
       if (value == null) {
