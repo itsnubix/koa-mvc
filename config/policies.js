@@ -7,5 +7,6 @@
  */
 module.exports = {
   'all ^/(?!js/|styles/).*$': ['noCache'],
+  'post ^/(?!js/|styles/).*$': ['bodyParser'],
   'all ^/(?!js/|styles/|modern\\-browser/).*$': ['modernBrowser'],
 };
