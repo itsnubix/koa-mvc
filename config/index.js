@@ -20,4 +20,8 @@ module.exports = _.merge({
   routes,
   session,
   views: {},
+  ejsMinifyOptions: {
+    collapseWhitespace: true,
+    removeComments: true,
+  },
 }, environmentOverrides);

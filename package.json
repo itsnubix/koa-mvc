@@ -30,6 +30,7 @@
     "grunt-cli": "^1.2.0",
     "grunt-sass": "^2.0.0",
     "grunt-sync": "^0.6.2",
+    "html-minifier": "^3.4.3",
     "ioredis": "^2.5.0",
     "kcors": "^2.2.1",
     "koa": "^2.0.1",

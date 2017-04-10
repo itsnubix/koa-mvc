@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const koaEjs = require('koa-ejs');
 const path = require('path');
+const minify = require('html-minifier').minify;
 
 module.exports = {
   startup: async function ejsPluginStartup(app) {
@@ -28,7 +29,8 @@ module.exports = {
         }
       }
 
-      return render.apply(context, [viewName, viewOptions]);
+      await render.apply(context, [viewName, viewOptions]);
+      context.body = minify(context.body, KoaConfig.ejsMinifyOptions);
     };
   },
 };
