@@ -9,11 +9,10 @@ const logService = require('../../services/logService');
 
 module.exports = {
   startup: async function waterlineMongoPluginStartup() {
-    const modelsPath = path.join(process.cwd(), '/app/models');
+    const modelsPath = path.join(__dirname, '../../models');
     try {
       if (KoaConfig.datastores) {
         const waterline = new Waterline();
-
         const files = await fs.readdir(modelsPath);
         for (const file of files) {
           if (/.js$/ig.test(file)) {
