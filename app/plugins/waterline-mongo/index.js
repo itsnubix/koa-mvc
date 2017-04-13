@@ -9,13 +9,12 @@ const logService = require('../../services/logService');
 
 module.exports = {
   startup: async function waterlineMongoPluginStartup() {
+    const modelsPath = path.join(process.cwd(), '/app/models');
     try {
       if (KoaConfig.datastores) {
         const waterline = new Waterline();
 
-        const modelsPath = path.join(KoaConfig.path, '/app/models');
         const files = await fs.readdir(modelsPath);
-
         for (const file of files) {
           if (/.js$/ig.test(file)) {
             const fileBasename = path.basename(file, '.js');
@@ -58,7 +57,7 @@ module.exports = {
         });
       }
     } catch (ex) {
-      logService.warn('No waterline models detected');
+      logService.warn(`No waterline models detected in ${modelsPath}`);
     }
   },
 };

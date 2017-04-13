@@ -11,6 +11,7 @@ const flash = require('./flash');
 const ieStandardsMode = require('./ieStandardsMode');
 const policies = require('./policies');
 const removeTrailingSlash = require('./removeTrailingSlash');
+const requestLoggingDetails = require('./requestLoggingDetails');
 const response = require('./response');
 const responseTime = require('./responseTime');
 const routes = require('./routes');
@@ -35,6 +36,7 @@ module.exports = () => {
     flash(),
     device(),
     ieStandardsMode(),
+    requestLoggingDetails(),
     response(),
     removeTrailingSlash(),
     policies(),
