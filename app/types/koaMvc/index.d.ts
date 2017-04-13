@@ -8,6 +8,12 @@ declare namespace KoaMvc {
     destroy(key: string): void;
   }
 
+  interface Device {
+    parser: any,
+    type: string,
+    name: string,
+  }
+
   interface Flash {
     /**
      * Set a flash message for the specified severity
@@ -21,6 +27,10 @@ declare namespace KoaMvc {
      * @returns {string[]} Array of messages
      */
     flash(severity: string): string[];
+  }
+
+  interface Request extends Application.Request {
+    device: Device,
   }
 
   interface Session {
@@ -54,6 +64,8 @@ declare namespace KoaMvc {
      * Renders ejs markup based on the name of the controller and action
      */
     render(): void;
+
+    request: Request,
 
     /**
      * Session dictionary
