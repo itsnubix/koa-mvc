@@ -1,10 +1,11 @@
 'use strict';
 
+import {Context} from "../../types/koaMvc/index";
 const _ = require('lodash');
 
 module.exports = () => {
-  return async function flashMiddleware(context, next) {
-    function flash(severity, message) {
+  return async function flashMiddleware(context: Context, next: () => void) {
+    function flash(severity?: string, message?: string) {
       if (severity && message) {
         context.session.flash[severity] = context.session.flash[severity] || [];
         if (_.isArray(message)) {
