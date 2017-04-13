@@ -3,7 +3,7 @@
 const _ = require('lodash');
 
 module.exports = () => {
-  return async function flash(context, next) {
+  return async function flashMiddleware(context, next) {
     function flash(severity, message) {
       if (severity && message) {
         context.session.flash[severity] = context.session.flash[severity] || [];
