@@ -1,5 +1,5 @@
 'use strict';
-import {Context} from "../types/koaMvc/context";
+import {Context} from "../types/koaMvc/index";
 
 module.exports = {
   async index(context: Context) {
