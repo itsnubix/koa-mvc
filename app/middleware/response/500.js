@@ -57,9 +57,7 @@ module.exports = async function response(context, next) {
       // Reset to original status after rendering html
       context.status = statusCode;
     } catch (ex) {
-      logService.error(ex, {
-        req: context.req,
-      });
+      logService.error(ex, context.state.getRequestLoggingDetails());
     }
   }
 };
