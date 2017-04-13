@@ -23,6 +23,14 @@ module.exports = (grunt) => {
       // When assets are changed:
       tasks: ['sass:default', 'sync:default'],
     },
+    app_js: {
+      files: ['app.js', 'config/**/*.js', 'app/**/*.js'],
+      tasks: ['sync:app_js'],
+    },
+    app_ts: {
+      files: ['**/*.ts', "!node_modules/**"],
+      tasks: ['ts'],
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');

@@ -2,9 +2,9 @@
   "name": "koa-mvc",
   "version": "1.0.0",
   "description": "Lightweight MVC framework for Koa",
-  "main": "index.js",
+  "main": ".build/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node .build/index.js",
     "build": "grunt default",
     "test": "mocha",
     "postinstall": "if ! test \"$NODE_ENV\" = \"production\" ; then mkdir -p .git/hooks && cp -f git-hooks/pre-commit .git/hooks/ && chmod 755 .git/hooks/pre-commit ; fi"
@@ -30,6 +30,7 @@
     "grunt-cli": "^1.2.0",
     "grunt-sass": "^2.0.0",
     "grunt-sync": "^0.6.2",
+    "grunt-ts": "^6.0.0-beta.15",
     "html-minifier": "^3.4.3",
     "ioredis": "^2.5.0",
     "kcors": "^2.2.1",
@@ -45,11 +46,14 @@
     "lodash": "^4.17.4",
     "mz": "^2.6.0",
     "sails-mongo2": "^0.12.4",
+    "source-map-support": "^0.4.14",
+    "typescript": "^2.2.2",
     "uuid": "^3.0.1",
     "waterline": "^0.12.2",
     "winston": "^2.3.1"
   },
   "devDependencies": {
+    "@types/koa": "^2.0.39",
     "eslint": "^3.16.1",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",

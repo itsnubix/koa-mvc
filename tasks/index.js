@@ -5,6 +5,7 @@ const eslint = require('./configs/eslint');
 const jsbeautifier = require('./configs/jsbeautifier');
 const sass = require('./configs/sass');
 const sync = require('./configs/sync');
+const ts = require('./configs/ts');
 const watch = require('./configs/watch');
 const taskDefault = require('./default');
 const taskLint = require('./lint');
@@ -17,6 +18,7 @@ module.exports = (grunt) => {
   jsbeautifier(grunt);
   sass(grunt);
   sync(grunt);
+  ts(grunt);
   watch(grunt);
 
   // Register tasks

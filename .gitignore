@@ -1,5 +1,7 @@
 node_modules
 .tmp
+.build
+.tscache
 dump.rdb
 .grunt
 lib-cov

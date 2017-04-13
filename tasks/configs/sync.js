@@ -19,6 +19,12 @@ module.exports = (grunt) => {
         dest: '.tmp',
       }],
     },
+    app_js: {
+      files: [{
+        src: ['app.js', 'config/**/*.js', 'app/**/*.js'],
+        dest: '.build',
+      }],
+    },
   });
 
   grunt.loadNpmTasks('grunt-sync');
