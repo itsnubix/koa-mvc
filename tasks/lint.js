@@ -7,10 +7,12 @@
 module.exports = (grunt) => {
   grunt.registerTask('lint', [
     'eslint:default',
+    'tslint:default',
   ]);
 
   // Limit lint task to staged git files
   grunt.registerTask('quicklint', [
     'staged:eslint:default',
+    'staged:tslint:default',
   ]);
 };
