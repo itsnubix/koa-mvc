@@ -1,6 +1,7 @@
 'use strict';
 
 const compose = require('koa-compose');
+const compress = require('koa-compress');
 const cors = require('kcors');
 const favicon = require('koa-favicon');
 const helmet = require('koa-helmet');
@@ -39,6 +40,7 @@ module.exports = () => {
     requestLoggingDetails(),
     response(),
     removeTrailingSlash(),
+    compress(),
     policies(),
     routes(),
     favicon(`${KoaConfig.path}/.tmp/favicon.ico`),
