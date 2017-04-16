@@ -28,6 +28,7 @@
     "device": "^0.3.8",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
+    "grunt-contrib-compress": "^1.4.1",
     "grunt-sass": "^2.0.0",
     "grunt-sync": "^0.6.2",
     "html-minifier": "^3.4.3",

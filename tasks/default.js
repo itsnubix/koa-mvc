@@ -9,6 +9,7 @@ module.exports = (grunt) => {
     'clean:default',
     'sass:default',
     'sync:default',
+    'compress',
     'watch:assets',
   ]);
 };
