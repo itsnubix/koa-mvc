@@ -6,6 +6,7 @@ const logService = require('../../services/logService');
 
 module.exports = () => {
   const router = new Router();
+  const isGetRegExp = new RegExp(/get/i);
 
   KoaConfig.routeDetails = {};
   for (const routeKey of _.keys(KoaConfig.routes)) {
@@ -23,10 +24,12 @@ module.exports = () => {
           router[verb](url, actionInstance);
 
           // Trim "Controller" off the end of the controllerPath
-          KoaConfig.routeDetails[url] = {
-            controller: controllerPath.replace(/Controller$/ig, '').toLowerCase(),
-            action,
-          };
+          if (!KoaConfig.routeDetails[url] || isGetRegExp.test(verb)) {
+            KoaConfig.routeDetails[url] = {
+              controller: controllerPath.replace(/Controller$/ig, '').toLowerCase(),
+              action,
+            };
+          }
         } else {
           logService.warn(`Unable to find controller action for route: ${routeKey}`);
         }
