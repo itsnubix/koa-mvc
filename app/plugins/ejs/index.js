@@ -29,6 +29,12 @@ module.exports = {
         }
       }
 
+      // Note: Setting the layout on the state will allow 500, 404, etc responses to use the same layout
+      const layoutOverride = (viewOptions || {}).layout;
+      if (layoutOverride) {
+        context.state.layout = layoutOverride;
+      }
+
       await render.apply(context, [viewName, viewOptions]);
       context.body = minify(context.body, KoaConfig.ejsMinifyOptions);
     };
