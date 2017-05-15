@@ -2,6 +2,8 @@
 
 MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit configuration over dynamic configuration.
 
+[![Known Vulnerabilities](https://snyk.io/test/github/koamvc/koa-mvc/badge.svg)](https://snyk.io/test/github/koamvc/koa-mvc)
+
 ## Getting started
 
 * Initialize koa-mvc by running the following command
