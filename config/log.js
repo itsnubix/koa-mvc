@@ -54,7 +54,7 @@ const log = {
     level: 'info',
     exitOnError: false,
     transports: [
-      new (winston.transports.Console)({
+      new winston.transports.Console({
         prettyPrint: true,
         colorize: true,
       }),
