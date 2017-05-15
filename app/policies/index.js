@@ -1,6 +1,6 @@
 'use strict';
 
-const bodyParser = require('koa-body-parser');
+const bodyParser = require('koa-bodyparser');
 const helmet = require('koa-helmet');
 const modernBrowser = require('./modernBrowser');
 
