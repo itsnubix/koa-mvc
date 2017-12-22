@@ -1,6 +1,5 @@
 {
   "root": true,
-  "fix": true,
   "extends": "airbnb-base",
   "env": {
     "node": true
@@ -60,9 +59,9 @@
       "error",
       "DebuggerStatement",
       "LabeledStatement",
-      "WithStatement",
+      "WithStatement"
     ],
-    "arrow-parens": "error",
+    "arrow-parens": ["error", "always"],
     "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
     "prefer-spread": "error"
   }

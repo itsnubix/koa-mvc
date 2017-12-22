@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const koaEjs = require('koa-ejs');
 const path = require('path');
-const minify = require('html-minifier').minify;
+const { minify } = require('html-minifier');
 
 module.exports = {
   startup: async function ejsPluginStartup(app) {
@@ -15,7 +15,7 @@ module.exports = {
     }));
 
     // override the render function to auto-fill the view name based on controller and action
-    const render = app.context.render;
+    const { render } = app.context;
     app.context.render = async function ejsRender(view, options) {
       const context = this;
       let viewName = view;
