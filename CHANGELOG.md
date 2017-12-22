@@ -1,4 +1,10 @@
-# 1.0.1 - 2017-05-14
+# 1.1.0
+
+* [feature] Replace waterline with BigAl
+* [feature] Prefer Postgres as default db instead of Mongo
+* [deps] Update outdated npms
+
+# 1.0.1
 
 * [fix] Use koa-bodyparser instead of koa-body-parser.
 * [style] Allow spaces in curly braces on a single line
