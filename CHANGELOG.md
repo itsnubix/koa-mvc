@@ -1,3 +1,7 @@
+# 1.1.1
+
+* [fix] Move all grunt deps to devDependencies
+
 # 1.1.0
 
 * [feature] Replace waterline with BigAl

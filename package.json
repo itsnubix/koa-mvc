@@ -1,6 +1,6 @@
 {
   "name": "koa-mvc",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Lightweight MVC framework for Koa",
   "main": "index.js",
   "scripts": {
@@ -28,11 +28,6 @@
     "bigal": "^1.0.3",
     "bowser": "^1.9.1",
     "device": "^0.3.8",
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-compress": "^1.4.3",
-    "grunt-sass": "^2.0.0",
-    "grunt-sync": "^0.7.0",
     "html-minifier": "^3.5.7",
     "ioredis": "^3.2.2",
     "kcors": "^2.2.1",
@@ -56,10 +51,15 @@
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-compress": "^1.4.3",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^20.1.0",
     "grunt-jsbeautifier": "^0.2.13",
-    "grunt-staged2": "^0.1.1"
+    "grunt-sass": "^2.0.0",
+    "grunt-staged2": "^0.1.1",
+    "grunt-sync": "^0.7.0"
   }
 }
