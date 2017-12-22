@@ -25,6 +25,7 @@
   "homepage": "https://github.com/jgeurts/koa-mvc#readme",
   "dependencies": {
     "bowser": "^1.6.1",
+    "bigal": "^1.0.3",
     "device": "^0.3.8",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
@@ -46,10 +47,9 @@
     "librato-node": "^4.1.0",
     "lodash": "^4.17.4",
     "mz": "^2.6.0",
-    "sails-mongo2": "^0.12.4",
     "uuid": "^3.0.1",
-    "waterline": "^0.12.2",
     "winston": "^2.3.1"
+    "pg": "^7.4.0",
   },
   "devDependencies": {
     "eslint": "^3.19.0",

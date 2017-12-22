@@ -53,10 +53,19 @@ module.exports = {
   port: 80,
 
   datastores: {
-    default: {
-      adapter: 'sails-mongo2',
-      url: process.env.DATABASE_URL,
-      poolSize: 5,
+    sql: {
+      host: process.env.SQL_HOST,
+      database: process.env.SQL_DATABASE,
+      user: process.env.SQL_USER,
+      password: process.env.SQL_PASSWORD,
+      ssl: true,
+    },
+    readonlySql: {
+      host: process.env.SQL_READONLY_HOST,
+      database: process.env.SQL_READONLY_DATABASE,
+      user: process.env.SQL_READONLY_USER,
+      password: process.env.SQL_READONLY_PASSWORD,
+      ssl: true,
     },
   },
 

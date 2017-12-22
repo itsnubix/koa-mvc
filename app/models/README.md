@@ -1,8 +1,8 @@
 # Models
 
 A model represents a collection of structured data, usually corresponding to a single table or collection in a database. Out of the box,
-koa-mvc supports waterline.js syntax for defining models. The `waterline-mongo` plugin sets up global variables for each model definition file
-located in this direcctory. Each global model variable will support [built in model methods](http://sailsjs.com/documentation/reference/waterline-orm/models#?builtin-model-methods).
+koa-mvc supports waterline.js syntax for defining models. The `orm` plugin exposes model classes to `app.orm.<class-name>`.
+Each class exposes [BigAl model methods](https://github.com/mpirik/bigal#model-class-methods).
 
 # Example
 
@@ -15,8 +15,12 @@ module.exports = {
   schema: true,
   autoUpdatedAt: true,
   autoCreatedAt: true,
-
   attributes: {
+    id: {
+      type: 'int',
+      unique: true,
+      primaryKey: true,
+    },
 
     name: {
       type: 'string',
@@ -24,17 +28,28 @@ module.exports = {
 
     email: {
       type: 'string',
-      //email: true,
       unique: true,
     },
 
     lastActiveAt: {
       type: 'datetime',
+      columnName: 'last_active_at',
     },
 
     isDeleted: {
       type: 'boolean',
       defaultsTo: false,
+      columnName: 'is_deleted',
+    },
+
+    createdAt: {
+      type: 'datetime',
+      columnName: 'created_at',
+    },
+
+    updatedAt: {
+      type: 'datetime',
+      columnName: 'updated_at',
     },
   },
 };

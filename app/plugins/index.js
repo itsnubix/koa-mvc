@@ -1,14 +1,14 @@
 'use strict';
 
 const ejs = require('./ejs');
-const waterlineMongo = require('./waterline-mongo');
+const orm = require('./orm');
 const librato = require('./librato');
 
 module.exports = {
   startup: (app) => {
     return Promise.all([
       ejs.startup(app),
-      waterlineMongo.startup(app),
+      orm.startup(app),
       librato.startup(app),
     ]);
   },
