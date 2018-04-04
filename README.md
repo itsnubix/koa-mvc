@@ -204,7 +204,7 @@ MVC framework for Koa v2. Similar to sails.js, but this framework uses explicit 
   module.exports = {
     async index(context) {
       context.flash('info', 'OMG ponies!');
-      await context.view();
+      await context.render();
     },
   }
   ```
