@@ -8,7 +8,9 @@
     "build": "grunt default",
     "lint": "grunt lint",
     "test": "mocha",
-    "postinstall": "if ! test \"$NODE_ENV\" = \"production\" ; then mkdir -p .git/hooks && cp -f git-hooks/pre-commit .git/hooks/ && chmod 755 .git/hooks/pre-commit ; fi"
+    "postinstall": "if ! test \"$NODE_ENV\" = \"production\" ; then mkdir -p .git/hooks && cp -f git-hooks/pre-commit .git/hooks/ && chmod 755 .git/hooks/pre-commit ; fi",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -45,7 +47,8 @@
     "mz": "^2.7.0",
     "pg": "^7.4.1",
     "uuid": "^3.2.1",
-    "winston": "^2.4.0"
+    "winston": "^2.4.0",
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "eslint": "^4.18.0",
@@ -61,5 +64,6 @@
     "grunt-sass": "^2.1.0",
     "grunt-staged2": "^0.1.1",
     "grunt-sync": "^0.7.0"
-  }
+  },
+  "snyk": true
 }
